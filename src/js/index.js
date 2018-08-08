@@ -4,3 +4,5 @@ import template from './lib/template';
 
 console.log($('body'));
 
+console.log('test');
+
