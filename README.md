@@ -76,7 +76,7 @@ Projet
 ├──build.js  页面打包配置
 ```
 
-# [Document](https://github.com/shen-zhao/webpack-multiple-demo/tree/master/doc)
+# [Document](https://github.com/shen-zhao/coldplay/tree/master/doc)
 
 # 参考资料
 
