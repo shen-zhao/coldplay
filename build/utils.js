@@ -32,10 +32,10 @@ function mkdir(pathChip, baseUrl) {
     const isExists = fs.existsSync(dirname);
     if(isExists) {
         return mkdir(pathChip, dirname);
-    } else {
-        fs.mkdirSync(dirname);
-        return mkdir(pathChip, dirname);
     }
+
+    fs.mkdirSync(dirname);
+    return mkdir(pathChip, dirname);
 }
 
 exports.publicPath = () => {
@@ -76,7 +76,7 @@ exports.dealPageConf = baseUrl => {
             new HtmlWebpackPlugin(htmlConfig)
         )
     });
-
+    //公共样式entry
     entryMap['stylesheet'] = './src/js/stylesheet.js';
 
     return {
@@ -145,20 +145,4 @@ exports.styleLoaders = options => {
 
     return rules;
 }
-
-exports.createLog = function(options) {
-    let logLevel = options.logLevel || 'info';
-    if (options.quiet === true) {
-        logLevel = 'silent';
-    }
-    if (options.noInfo === true) {
-        logLevel = 'warn';
-    }
-
-    return weblog({
-        level: logLevel,
-        name: 'wds',
-        timestamp: options.logTime
-    });
-};
     
