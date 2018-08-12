@@ -1,5 +1,5 @@
 import $ from 'jquery';
-import './lib/jquery.pagination';
+import '@/js/lib/jquery.pagination';
 
 function pagination(elem, options) {
     const config = {

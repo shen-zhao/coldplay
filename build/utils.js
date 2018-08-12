@@ -1,13 +1,12 @@
 const path = require('path');
 const fs = require('fs');
-const weblog = require('webpack-log');
 //生成html插件
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 //抽提css插件
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const config = require('../config');
-const pages = require('../build');
-const jsTemplate = `import $ from 'jquery';\nimport urlmap from '@/js/urlmap';\nimport template from '@/js/lib/template';`;
+const buildConfig = require('../build');
+const jsTemplate = `import $ from 'jquery';\nimport urlmap from '@/js/server/urlmap';\nimport template from '@/js/lib/template';`;
 const env = process.env.NODE_ENV;
 
 exports.resolve = dir => {
@@ -50,16 +49,18 @@ exports.assetsPath = _path => {
     return path.posix.join(assetsSubDirectory, _path);
 }
 
-exports.dealPageConf = baseUrl => {
-    const entryMap = {};
-    const htmlArr = [];
-    let htmlConfig = {};
+exports.dealPageConf = () => {
+    const entryMap = {},
+          htmlArr = [],
+          htmlConfig = {},
+          pages = buildConfig.pages,
+          baseUrl = buildConfig.baseUrl;
 
     pages.forEach((obj, i) => {
         //entry
-        if(obj.main) {
-            fsExistsTest(baseUrl, obj.main);
-            entryMap[obj.template] = [baseUrl + obj.main];
+        if(obj.entry) {
+            fsExistsTest(baseUrl, obj.entry);
+            entryMap[obj.template] = ['./' + path.join(baseUrl, obj.entry)];
         }
         //html
         htmlConfig.filename = `./vm/${obj.template}.html`;
@@ -77,7 +78,7 @@ exports.dealPageConf = baseUrl => {
         )
     });
     //公共样式entry
-    entryMap['stylesheet'] = './src/js/stylesheet.js';
+    entryMap['stylesheet'] = './src/js/utils/stylesheet.js';
 
     return {
         entryMap,

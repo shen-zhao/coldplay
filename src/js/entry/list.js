@@ -1,9 +1,9 @@
 import $ from 'jquery';
-import '../styles/list.scss';
-import urlmap from './urlmap';
-import template from './lib/template';
-import { pagination } from './common';
-import listTmpl from '../templates/list.html';
+import '@/styles/list.scss';
+import urlmap from '@/js/server/urlmap';
+import template from '@/js/lib/template';
+import { pagination } from '@/js/utils/common';
+import listTmpl from '@/templates/list.html';
 
 const _METHODS = {
     getListData(params) {

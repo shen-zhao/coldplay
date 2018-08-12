@@ -1,8 +1,7 @@
 const path = require('path');
 const config = require('../config');
 const utils = require('./utils');
-const baseUrl = './src/js/';
-const pageConf = utils.dealPageConf(baseUrl);
+const pageConf = utils.dealPageConf();
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 const env = process.env.NODE_ENV;

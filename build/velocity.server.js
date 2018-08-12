@@ -17,7 +17,7 @@ const devConfig = require('./webpack.dev.conf');
 const utils = require('./utils');
 const config = require('../config');
 
-let compiler = webpack(devConfig);
+const compiler = webpack(devConfig);
 
 const app = express();
 const appPath = utils.resolve('dev');
@@ -110,6 +110,7 @@ const devMiddleware = webpackDevMiddleware(compiler, {
     watchOptions: {
         poll: config.dev.poll,
     },
+    overlay: false,
     stats: {
         assets: false,
         children: false,
@@ -120,8 +121,10 @@ const devMiddleware = webpackDevMiddleware(compiler, {
 })
 // webpack hot-reload middleware(热刷新)
 const hotMiddleware = webpackHotMiddleware(compiler, {
-    reload: true,
-    noInfo: true
+    noInfo: true,
+    quiet: true,
+    overlay: false,
+    overlayWarnings: false
 })
 
 compiler.plugin('compilation', function (compilation) {
@@ -138,12 +141,8 @@ compiler.plugin('done', function() {
         isFirst = false;
     }
 });
-    
-// webpack server middleware (watch)
-app.use(devMiddleware);
 
-app.use(hotMiddleware);
-
+//require proxy
 Object.keys(proxyTable).forEach(function (context) {
     let options = proxyTable[context]
     if (typeof options === 'string') {
@@ -151,6 +150,11 @@ Object.keys(proxyTable).forEach(function (context) {
     }
     app.use(proxyMiddleware(options.filter || context, options))
 })
+    
+// webpack server middleware (watch)
+app.use(devMiddleware);
+
+app.use(hotMiddleware);
 
 module.exports = app.listen(port, (err) => {
     if (err) {
