@@ -157,7 +157,7 @@ app.use(devMiddleware);
 app.use(hotMiddleware);
 
 devMiddleware.waitUntilValid(() => {
-    console.log(`> Listening at http://localhost:${port}\n`)
+    console.log(`> Listening at http://localhost:${port}\n`);
 });
 
 module.exports = app.listen(port, (err) => {

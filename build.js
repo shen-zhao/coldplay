@@ -16,7 +16,7 @@ module.exports = {
         },
         {
             template: 'detail',
-            entry: 'detail/detail.js',
+            entry: 'detail.js',
             echarts: true
         },
         {

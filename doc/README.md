@@ -131,7 +131,7 @@ js文件
 html文件
 - 使用`${require(<!path>)}`
 
-4.建议js格式见`src/js/_suggest.js`(大家提出合理改进意见)
+4.建议js格式见`src/js/entry/detail.js`(大家提出合理改进意见)
 
 
 # 改进
