@@ -1,5 +1,3 @@
-require('./check-versions');
-
 const ora = require('ora');
 const webpack = require('webpack');
 const prodWebpackConfig = require('./webpack.prod.conf');

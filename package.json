@@ -8,7 +8,8 @@
     "test": "cross-env NODE_ENV=production node build/webpack.test.conf.js",
     "mocklint": "node ./node_modules/mocklint/index.js  -- ./src/mock/*/*.*",
     "eslint": "eslint --ext .js src",
-    "precommit": "npm run eslint && npm run mocklint"
+    "precommit": "npm run eslint && npm run mocklint",
+    "build:report": "cross-env NODE_ENV=production webpack --config build/webpack.prod.conf.js --json > compilation-stats.json"
   },
   "keywords": [
     "webpack",

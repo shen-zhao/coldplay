@@ -39,3 +39,4 @@ test.*
 .svn
 .CVS
 .idea
+compilation-stats.json
