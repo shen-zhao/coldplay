@@ -6,6 +6,8 @@ const utils = require('./utils');
 const webpackConfig = require('./webpack.base.conf');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin');
+//图片压缩
+const ImageminPlugin = require('imagemin-webpack-plugin').default;
 //压缩js
 const uglifyjsWebpackPlugin = require('uglifyjs-webpack-plugin');
 
@@ -30,6 +32,13 @@ const prodWebpackConfig = merge(webpackConfig, {
                 compress: {
                     drop_console: true
                 }
+            }
+        }),
+        new ImageminPlugin({
+            test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+            minFileSize: 10000,  //超过10k压缩
+            pngquant: {
+                quality: '95-100'
             }
         }),
         new webpack.optimize.ModuleConcatenationPlugin()
