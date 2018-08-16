@@ -1,7 +1,6 @@
-const rm = require('rimraf');
-const ora = require('ora');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
+const ora = require('ora');
 const utils = require('./utils');
 const webpackConfig = require('./webpack.base.conf');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -65,22 +64,17 @@ const testWebpackConfig = merge(webpackConfig, {
     }
 })
 
-module.exports = testWebpackConfig;
-
 let spinner = ora('building for test environment...');
 spinner.start();
 
-rm('dist', err => {
+webpack(testWebpackConfig, (err, stats) => {
+    spinner.stop();
     if(err) throw err;
-    webpack(testWebpackConfig, (err, stats) => {
-        spinner.stop();
-        if(err) throw err;
-        process.stdout.write(stats.toString({
-            colors: true,
-            modules: false,
-            children: false,
-            chunks: false,
-            chunkModules: false
-        }) + '\n\n')
-    });
-})
+    process.stdout.write(stats.toString({
+        colors: true,
+        modules: false,
+        children: false,
+        chunks: false,
+        chunkModules: false
+    }) + '\n\n')
+});
