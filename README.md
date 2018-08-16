@@ -40,26 +40,30 @@ Projet
    │    └─ audio  音频资源
    │
    │
-   ├─ inc  html碎片, 页面入口可以引用
+   ├─ inc  html组件, 供页面直接
    │
    │
    ├─ js  脚本
    │   ├─ lib  插件或插件封装
-   │   ├─ common.js  公共js
-   │   ├─ stylesheet.js  公共style入口
-   │   ├─ urlmap.js  接口map
-   │   └─ */*.js 页面js
+   │   ├─ entry 页面js入口
+   │   ├─ server 请求相关
+   │   │    ├─ urlmap.js  接口路由
+   │   │    └─ request.js  请求模块(根据项目不同进行拆分以及封装)
+   │   └─ utils 
+   │        ├─ commons.js  公共方法
+   │        ├─ global.js  全局执行脚本(通过配置自动注入)
+   │        └─ stylesheet.js  公共样式(通过配置自动注入)
    │ 
    │ 
-   ├─ mock  假数据
-   │    ├─ js  velocity假数据
-   │    └─ json  ajax假数据
+   ├─ mock  模拟数据
+   │    ├─ js  -velocity mock
+   │    └─ json  -ajax mock
    │  
    │
-   ├─ pages 所有页面入口
+   ├─ pages 页面入口
    │  
    │
-   ├─ styles 样式 
+   ├─ styles CSS 
    │    │   
    │    ├─ helpers 
    │    │    ├─ helpers.scss
@@ -73,7 +77,7 @@ Projet
    │    
    └─ templates  html模板(供art-template使用)
 │ 
-├──build.js  页面打包配置
+├──build.js  bundle config
 ```
 
 # [Document](https://github.com/shen-zhao/coldplay/tree/master/doc)

@@ -46,7 +46,7 @@ const _METHODS = {
 };
 
 function bindEvent() {
-
+    console.log(1);
 }
 
 function init() {

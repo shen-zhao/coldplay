@@ -14,7 +14,7 @@ Object.keys(webpackConfig.entry).forEach(function (name) {
 
 const devWebpackConfig = merge(webpackConfig, {
     mode: 'development',
-    devtool: 'source-map',
+    devtool: 'cheap-eval-source-map',
     plugins: [
         new CopyWebpackPlugin([
             {

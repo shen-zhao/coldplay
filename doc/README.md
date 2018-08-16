@@ -7,8 +7,8 @@
 ## js
 
 - 每个页面只有一个js入口, 存放在js目录中
-- `node_modules`依赖除去比较大的插件(`echarts`等), 全部打入`vendors.js`中, 注: 单一模块入口文件引用超过3次才会分离, 最小chunk50kb
-- 本地依赖符合分离标准的全部打入`commons.js`中, 注: 单一模块入口文件引用超过五次才会分离, 最小chunk50kb
+- `node_modules`依赖除去比较大的插件(`echarts`等), 全部打入`vendors.js`中, 注: 最小chunk30kb
+- 本地依赖符合分离标准的全部打入`commons.js`中, 注: 单一模块入口文件引用超过3次才会分离, 最小chunk30kb
 - `stylesheet.js`单独打包, 无需手动调用, 自动注入到每个页面中
 
 ## css/scss等
@@ -50,6 +50,7 @@ pages: [ 页面配置
         *template: 页面入口名称, 位置src/pages,
         *entry: js入口文件路径, 🌰 src/js/entry + js名称, 支持子文件夹例如index/index.js会自动生成index目录,
         commons: 插件来源为node_modules和入口脚本的本地依赖文件, 包括jQuery, art-template等, 默认引入, false不引入
+        global: 全局执行脚本, 例如aside、header脚本, 统一注入, false不引入
         echarts: echarts库, 注: echarts库比较大, 没有打入vendors, 后续如有大型插件需要单独引用的需修改配置,
         stylesheet: 所有公共样式，如common.scss/form.scss/table.scss/reset.scss等, 默认引入, 为false时不引入
     }
@@ -64,7 +65,7 @@ module.exports = {
         },
         {
             template: 'detail',
-            entry: 'detail/detail.js',
+            entry: 'detail.js',
             echarts: true
         },
         {
@@ -75,7 +76,8 @@ module.exports = {
             template: '404',
             entry: '404.js',
             commons: false,
-            stylesheet: false
+            stylesheet: false,
+            global: false
         }
     ]
 };

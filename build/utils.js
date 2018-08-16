@@ -67,9 +67,10 @@ exports.dealPageConf = () => {
         htmlConfig.template = `./src/pages/${obj.template}.html`;
         htmlConfig.chunksSortMode = 'manual'; //注入循序，手册排序，如果按依赖排序会导致common style优先级高于self style
         htmlConfig.chunks = [];
-        htmlConfig.chunks.push('manifest');  //初步认为是用来维护模块之间的以来关系的
+        htmlConfig.chunks.push('manifest');  //runtime确立模块间的依赖关系
         obj.stylesheet !== false && htmlConfig.chunks.push('stylesheet');
         obj.commons !== false && ((htmlConfig.chunks.push('vendors')), htmlConfig.chunks.push('commons'));
+        obj.global !== false && htmlConfig.chunks.push('global')
         obj.echarts && (htmlConfig.chunks.push('echarts'));
         htmlConfig.chunks.push(obj.template);
 
@@ -79,6 +80,8 @@ exports.dealPageConf = () => {
     });
     //公共样式entry
     entryMap['stylesheet'] = './src/js/utils/stylesheet.js';
+    //全局脚本
+    entryMap['global'] = './src/js/utils/global.js';
 
     return {
         entryMap,

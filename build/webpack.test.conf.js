@@ -10,7 +10,7 @@ const uglifyjsWebpackPlugin = require('uglifyjs-webpack-plugin');
 
 const testWebpackConfig = merge(webpackConfig, {
     mode: 'none',
-    devtool: 'source-map',
+    devtool: 'eval-source-map',
     output: {
         publicPath: utils.publicPath()
     },
@@ -32,29 +32,29 @@ const testWebpackConfig = merge(webpackConfig, {
     optimization: {
         flagIncludedChunks: true,
         occurrenceOrder: true,
+        providedExports: true,
+        usedExports: true,
         sideEffects: true,
         noEmitOnErrors: true,
         splitChunks: {
-            minSize: 50000,
+            minSize: 30000,
             name: false,
+            chunks: 'all',
             cacheGroups: {
                 vendors: {
                     test: /[\\/]{1,2}node_modules[\\/]{1,2}(?!echarts)/,
                     name: 'vendors',
-                    chunks: 'initial',
-                    minChunks: 3,
+                    minChunks: 1,
                     enforce: true
                 },
                 commons: {
                     test: /[\\/]src[\\/]/,
                     name: 'commons',
-                    chunks: 'initial',
-                    minChunks: 4
+                    minChunks: 3
                 },
                 echarts: {
                     test: /[\\/]{1,2}node_modules[\\/]{1,2}echarts/,
                     name: 'echarts',
-                    chunks: 'initial',
                     minChunks: 1
                 }
             }
