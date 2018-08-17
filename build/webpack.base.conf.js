@@ -67,7 +67,7 @@ const baseConfig = {
                 loader: 'file-loader',
                 options: {
                     name: utils.assetsPath('img/[name].[hash:8].[ext]'),
-                    publicPath: env === 'production' ? utils.publicPath() : '../'
+                    publicPath: utils.publicPath(env)
                 },
                 include: [utils.resolve('src')]
             },
@@ -76,7 +76,7 @@ const baseConfig = {
                 loader: 'file-loader',
                 options: {
                     name: utils.assetsPath('font/[name].[hash:8].[ext]'),
-                    publicPath: env === 'production' ? utils.publicPath() : '../'
+                    publicPath: utils.publicPath(env)
                 },
                 include: [utils.resolve('src')]
             },
@@ -85,7 +85,7 @@ const baseConfig = {
                 loader: 'file-loader',
                 options: {
                     name: utils.assetsPath('media/[name].[hash:8].[ext]'),
-                    publicPath: env === 'production' ? utils.publicPath() : '../'
+                    publicPath: utils.publicPath(env)
                 },
                 include: [utils.resolve('src')]
             }

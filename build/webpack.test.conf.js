@@ -11,7 +11,7 @@ const testWebpackConfig = merge(webpackConfig, {
     mode: 'none',
     devtool: 'eval-source-map',
     output: {
-        publicPath: utils.publicPath()
+        publicPath: utils.publicPath('production')
     },
     plugins: [
         new MiniCssExtractPlugin({

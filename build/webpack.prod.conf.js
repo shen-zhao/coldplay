@@ -14,7 +14,7 @@ const uglifyjsWebpackPlugin = require('uglifyjs-webpack-plugin');
 const prodWebpackConfig = merge(webpackConfig, {
     mode: 'none',
     output: {
-        publicPath: utils.publicPath()
+        publicPath: utils.publicPath('production')
     },
     plugins: [
         new MiniCssExtractPlugin({

@@ -37,7 +37,10 @@ function mkdir(pathChip, baseUrl) {
     return mkdir(pathChip, dirname);
 }
 
-exports.publicPath = () => {
+exports.publicPath = (env) => {
+    if(env = 'development') {
+        return `//localhost:${config.dev.port}`;
+    }
     return process.argv[2] || config.build.publicPath;
 }
 
