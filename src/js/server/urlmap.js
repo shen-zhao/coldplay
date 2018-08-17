@@ -9,4 +9,5 @@ const prodMap = {
     list: 'app/list'
 };
 
+/* eslint-disable no-undef */
 export default process.env.NODE_ENV === 'production' ? prodMap : devMap;

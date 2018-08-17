@@ -38,7 +38,7 @@ function mkdir(pathChip, baseUrl) {
 }
 
 exports.publicPath = (env) => {
-    if(env = 'development') {
+    if(env === 'development') {
         return `//localhost:${config.dev.port}`;
     }
     return process.argv[2] || config.build.publicPath;

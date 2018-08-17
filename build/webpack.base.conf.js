@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 const config = require('../config');
 const utils = require('./utils');
 const pageConf = utils.dealPageConf();
@@ -97,6 +98,9 @@ const baseConfig = {
             root: utils.resolve(''),
             verbose: false, //开启在控制台输出信息
             dry: false
+        }),
+        new webpack.DefinePlugin({
+            'process.env': require('../config/env.config')[env]
         }),
     ]
 }
