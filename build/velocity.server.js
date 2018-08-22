@@ -21,8 +21,8 @@ const compiler = webpack(devConfig);
 
 const app = express();
 const appPath = utils.resolve('dev');
-const port = config.dev.port;
-const proxyTable = config.dev.proxyTable;
+const port = serverConfig.port;
+const proxyTable = serverConfig.proxyTable;
 const progress = config.dev.progress;
 const autoOpen = config.dev.autoOpen;
 
@@ -87,7 +87,13 @@ if(progress) {
 }
 
 app.set('views', appPath);
-app.use(parseVm);//velocity
+/* velocity */
+app.use(parseVm);
+/* no-cache */
+app.use(function(req, res, next) {
+    res.set(serverConfig.responseHeaders);
+    next();
+});
 app.use(function (req, res, next) {
     let reg = /\/mock\/json\/\w+\.json$/;
     let filePath = path.join(appPath, req.path);

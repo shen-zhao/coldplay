@@ -51,8 +51,11 @@ Projet
    │   │    └─ request.js  请求模块(根据项目不同进行拆分以及封装)
    │   └─ utils 
    │        ├─ commons.js  公共方法
+   │        ├─ dialog.js  弹窗
    │        ├─ global.js  全局执行脚本(通过配置自动注入)
-   │        └─ stylesheet.js  公共样式(通过配置自动注入)
+   │        ├─ stylesheet.js  公共样式(通过配置自动注入)
+   │        ├─ template.js  art-template
+   │        └─ validate.js  表单校验
    │ 
    │ 
    ├─ mock  模拟数据
