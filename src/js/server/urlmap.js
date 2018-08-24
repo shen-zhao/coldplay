@@ -1,7 +1,7 @@
 
 const devMap = {
-    detail: '../mock/json/detail.json',
-    list: '../mock/json/list.json'
+    detail: '/mock/json/detail.json',
+    list: '/mock/json/list.json'
 };
 
 const prodMap = {

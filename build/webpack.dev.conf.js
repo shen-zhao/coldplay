@@ -4,6 +4,7 @@ const webpack = require('webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin');
 const config = require('../config');
+const serverConf = require('../config/server.config');
 const utils = require('./utils');
 const webpackConfig = require('./webpack.base.conf');
 
@@ -29,7 +30,7 @@ const devWebpackConfig = merge(webpackConfig, {
         new webpack.HotModuleReplacementPlugin(),
         new FriendlyErrorsPlugin({
             compilationSuccessInfo: {
-                messages: [`Your application is running here: http://localhost:${config.dev.port}`]
+                messages: [`Your application is running here: http://localhost:${serverConf.port}`]
             }
         })
     ]

@@ -1,6 +1,6 @@
 import $ from 'jquery';
 import '@/styles/index.scss';
-import template from '@/js/uitls/template';
+// import template from '@/js/utils/template';
 
 console.log($('body'));
 

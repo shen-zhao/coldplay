@@ -87,6 +87,14 @@ if(progress) {
 }
 
 app.set('views', appPath);
+/* require proxy */
+Object.keys(proxyTable).forEach(function (context) {
+    let options = proxyTable[context]
+    if (typeof options === 'string') {
+        options = { target: options }
+    }
+    app.use(proxyMiddleware(options.filter || context, options))
+})
 /* velocity */
 app.use(parseVm);
 /* no-cache */
@@ -117,13 +125,18 @@ const devMiddleware = webpackDevMiddleware(compiler, {
         poll: config.dev.poll,
     },
     overlay: false,
+    quiet: true,
     stats: {
+        builtAt: false,
         assets: false,
         children: false,
         chunks: false,
         entrypoints: false,
-        modules: false
-    }
+        modules: false,
+        version: false,
+        hash: false
+    },
+    logLevel: 'silent'
 })
 // webpack hot-reload middleware(热刷新)
 const hotMiddleware = webpackHotMiddleware(compiler, {
@@ -147,24 +160,15 @@ compiler.plugin('done', function() {
         isFirst = false;
     }
 });
-
-//require proxy
-Object.keys(proxyTable).forEach(function (context) {
-    let options = proxyTable[context]
-    if (typeof options === 'string') {
-        options = { target: options }
-    }
-    app.use(proxyMiddleware(options.filter || context, options))
-})
     
 // webpack server middleware (watch)
 app.use(devMiddleware);
 
 app.use(hotMiddleware);
 
-devMiddleware.waitUntilValid(() => {
-    console.log(`> Listening at http://localhost:${port}\n`);
-});
+// devMiddleware.waitUntilValid(() => {
+//     console.log(`> Listening at http://localhost:${port}\n`);
+// });
 
 module.exports = app.listen(port, (err) => {
     if (err) {

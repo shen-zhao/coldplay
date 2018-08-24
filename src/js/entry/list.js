@@ -1,7 +1,7 @@
 import $ from 'jquery';
 import '@/styles/list.scss';
 import urlmap from '@/js/server/urlmap';
-import template from '@/js/uitls/template';
+import template from '@/js/utils/template';
 import { pagination } from '@/js/utils/common';
 import listTmpl from '@/templates/list.html';
 

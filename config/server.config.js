@@ -6,7 +6,7 @@ module.exports = {
     proxyTable: {
         // '/mock': {
         //     // 我要请求的地址
-        //     target: 'http://oatest.bujidele.com:8010/apitest/api/tydproject/doOld/',
+        //     target: 'http://172.19.163.208:3000',
         //     //是否跨域
         //     changeOrigin: true,
         //     pathRewrite: {
